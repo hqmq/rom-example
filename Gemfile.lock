@@ -13,6 +13,9 @@ GEM
       axiom-types (~> 0.0.3)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.7)
+    axiom-memory-adapter (0.0.3)
+      axiom (~> 0.1.1)
+      thread_safe (~> 0.1.0)
     axiom-optimizer (0.1.1)
       axiom (~> 0.1.0)
     axiom-types (0.0.3)
@@ -64,5 +67,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rom
+  axiom-memory-adapter (~> 0.0.3)
+  rom (~> 0.1.2)
   rspec (~> 2.14)
