@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'axiom-memory-adapter'
 
 describe 'ROM' do
   before(:each) do
