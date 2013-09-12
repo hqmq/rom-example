@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ROM' do
+describe 'Memory Adapter' do
   before(:each) do
     @env = ROM::Environment.setup(memory: 'memory://test')
 

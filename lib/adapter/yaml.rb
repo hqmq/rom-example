@@ -1,3 +1,4 @@
+## This code originally from https://github.com/solnic/rom-demo/blob/master/lib/yaml_adapter.rb
 require 'rom/support/axiom/adapter'
 require 'yaml'
 
@@ -25,6 +26,10 @@ module Axiom
       def read(relation)
         attributes = relation.header.map(&:name)
         @data[relation.name].map { |hash| hash.values_at(*attributes) }
+      end
+
+      def write(relation)
+        p relation
       end
     end
 
