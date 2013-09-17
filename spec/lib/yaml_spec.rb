@@ -35,17 +35,36 @@ describe 'YAML Adapter' do
     end
   end
 
-  it "can insert new user" do
-    original_path = fixture_file.clone
-    fixture_file['.yml'] = '.tmp.yml'
-    FileUtils.copy(original_path, fixture_file)
-    env.session do |s|
-      johnny = User.new(name: "Johnny Appleseed", id: 3)
-      s[:users].insert(johnny)
-      s.flush
+  context "persisting data" do
+    before(:each) do
+      original_path = fixture_file.clone
+      fixture_file['.yml'] = '.tmp.yml'
+      FileUtils.copy(original_path, fixture_file)
     end
 
-    content = File.read(fixture_file)
-    content.should include("Johnny Appleseed")
+    after(:each) do
+      FileUtils.rm(fixture_file)
+    end
+
+    it "can insert new user" do
+      env.session do |s|
+        johnny = User.new(name: "Johnny Appleseed", id: 3)
+        s[:users].insert(johnny)
+        s.flush
+      end
+
+      File.read(fixture_file).should include("Johnny Appleseed")
+    end
+
+    it "can update a user" do
+      env.session do |s|
+        john = s[:users].restrict(id: 1).one
+        john.name = "Buddy"
+        s[:users].save(john)
+        s.flush
+      end
+
+      File.read(fixture_file).should include("Buddy")
+    end
   end
 end
