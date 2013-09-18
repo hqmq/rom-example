@@ -78,10 +78,12 @@ module Axiom
 
       def insert(tuples)
         adapter.insert(self, tuples)
+        self
       end
 
       def delete(tuples)
         adapter.delete(self, tuples)
+        self
       end
 
       private
