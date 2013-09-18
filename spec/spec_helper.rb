@@ -4,6 +4,7 @@ require 'rspec'
 require 'rom'
 require 'axiom-memory-adapter'
 require_relative '../lib/adapter/yaml'
+require_relative '../lib/adapter/json'
 require_relative '../lib/user'
 
 
